@@ -1,6 +1,12 @@
 const $todoInput = document.querySelector("#form-add-input");
 const $form = document.querySelector("#todolist-form");
 const $taskContainer = document.querySelector("#task-container");
+const $deleteAllBtn = document.querySelector("#delete-all-btn");
+const $deleteNotification = document.querySelector("#delete-notification");
+const $cancelDeletingBtn = document.querySelector("#cancel-deleting");
+const $secondsText = document.querySelector("#seconds");
+
+disableBtn();
 
 $form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -30,6 +36,7 @@ $form.addEventListener("submit", (e) => {
   `;
     $taskMainElement.appendChild($btnsWrapperElement);
     $todoInput.value = "";
+    disableBtn();
   }
 });
 
@@ -37,16 +44,28 @@ $taskContainer.addEventListener("click", (e) => {
   if (e.target.className == "complete") {
     e.target.parentElement.previousSibling.classList.toggle("completed");
   } else if (e.target.className == "delete") {
-    // console.log("bosildi");
-    const isAgreedToDelete = confirm(
-      "Siz bu postni o'chirib tashlashga rozimisiz?"
-    );
-    if (isAgreedToDelete) {
-      e.target.parentElement.parentElement.classList.add("remove-item");
-      setTimeout(() => {
-        e.target.parentElement.parentElement.remove();
-      }, 300);
-    }
+    document.querySelectorAll(".remove-item").forEach((i) => {
+      i.remove();
+    });
+    e.target.closest(".task-item").classList.add("remove-item");
+    $deleteNotification.style.bottom = "22%";
+    let defaultSeconds = 5;
+    let time5seconds = setInterval(() => {
+      $secondsText.innerHTML =
+        defaultSeconds - 1 + `${defaultSeconds >= 3 ? " seconds" : " second"}`;
+      defaultSeconds = defaultSeconds - 1;
+    }, 1000);
+    let timeForDeleting = setTimeout(() => {
+      e.target.closest(".task-item").remove();
+      $deleteNotification.style.bottom = "-100%";
+      clearInterval(time5seconds);
+    }, 5000);
+    $cancelDeletingBtn.addEventListener("click", () => {
+      clearTimeout(timeForDeleting);
+      e.target.closest(".task-item").classList.remove("remove-item");
+      $deleteNotification.style.bottom = "-100%";
+    });
+    disableBtn();
   } else if (e.target.className == "edit") {
     // console.log("bosildi");
     if (
@@ -67,3 +86,29 @@ $taskContainer.addEventListener("click", (e) => {
     }
   }
 });
+
+$deleteAllBtn.addEventListener("click", () => {
+  const isAgreedToDelete = confirm(
+    "Siz hammasini tozalab tashlashga rozimisiz?"
+  );
+  if (isAgreedToDelete) {
+    $taskContainer.innerHTML = "";
+    // DOM dan o'chirishni profisanal usuli bunaqa buladi
+    // while ($taskContainer.firstChild) {
+    //   $taskContainer.removeChild($taskContainer.firstChild)
+    // }
+  }
+  disableBtn();
+});
+
+function disableBtn() {
+  console.log($taskContainer.children);
+  setTimeout(() => {
+    if ($taskContainer.children.length == 0) {
+      $deleteAllBtn.setAttribute("disabled", true);
+      // console.log($deleteAllBtn.setAttribute("disabled", true));
+    } else {
+      $deleteAllBtn.removeAttribute("disabled");
+    }
+  }, 301);
+}

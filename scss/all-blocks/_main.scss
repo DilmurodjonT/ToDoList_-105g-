@@ -21,8 +21,22 @@
   background-color: $m-c;
   box-shadow: $m-sh;
   border-radius: $m-br;
-  display: flex;
-  align-items: flex-start;
+  // display: flex;
+  // align-items: flex-start;
+}
+
+.delete-all {
+  margin: 0 1rem;
+  margin-top: 30px;
+  padding: 8px 16px;
+  background-color: $m-e;
+  border: none;
+  border-radius: calc($m-br / 2);
+  color: $m-c;
+}
+
+.delete-all:disabled {
+  opacity: 0.5;
 }
 
 .task-item {
@@ -41,13 +55,54 @@
   }
 }
 
+.delete-notification {
+  box-shadow: $m-sh;
+  border-radius: $m-br;
+  background-color: $m-c;
+  position: fixed;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  padding: 10px 1rem;
+  left: 50%;
+  bottom: -100%;
+  transition: 0.5s;
+  transform: translateX(-50%);
+  p {
+    flex: 1;
+  }
+
+  button {
+    border: none;
+    border-radius: 5px;
+    background-color: $m-s;
+    padding: 5px 8px;
+    color: $m-c;
+  }
+}
+
 .remove-item {
-  animation: removeItem 0.3s ease-in-out forwards;
+  animation: removeItem 0.5s ease-in-out forwards;
 }
 
 @keyframes removeItem {
-  to {
-    transform: translateX(-100%);
+  50% {
+    height: auto;
+    margin: 15px auto;
+    padding: 1rem 1.25rem;
+    transform: translateX(-120%);
+  }
+  51% {
+    height: 0;
+    padding: 0;
+    margin: 0;
+    transform: translateX(-120%);
+  }
+  100% {
+    height: 0;
+    padding: 0;
+    margin: 0;
+    transform: translateX(-120%);
   }
 }
 

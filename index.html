@@ -32,8 +32,15 @@
             </div>
             <button type="submit">Add task</button>
           </form>
+          <button id="delete-all-btn" class="delete-all">Delete all</button>
         </div>
         <div class="task-container" id="task-container"></div>
+        <div id="delete-notification" class="delete-notification">
+          <p>Deleting in&nbsp;<span id="seconds">5 seconds</span>&nbsp;</p>
+          <button id="cancel-deleting">
+            <i class="fa-solid fa-rotate-left"></i> Cancel
+          </button>
+        </div>
       </div>
     </main>
     <script src="./js/script.js"></script>
