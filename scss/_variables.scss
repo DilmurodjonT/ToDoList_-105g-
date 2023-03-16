@@ -4,3 +4,15 @@ $m-s: #14ba14;
 $m-e: #f43232;
 $m-d: #222222;
 $m-br: 10px;
+
+.theme-dark {
+  --main-bg: hsl(235, 21%, 11%);
+  --todo-bg: hsl(235, 24%, 19%);
+  --font-color: hsl(234, 39%, 85%);
+}
+
+.theme-light {
+  --main-bg: hsl(0, 0%, 98%);
+  --todo-bg: hsl(192, 84%, 58%);
+  --font-color: hsl(240, 1%, 27%);
+}

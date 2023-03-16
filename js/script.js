@@ -6,6 +6,12 @@ const $deleteNotification = document.querySelector("#delete-notification");
 const $cancelDeletingBtn = document.querySelector("#cancel-deleting");
 const $secondsText = document.querySelector("#seconds");
 
+theme.addEventListener("click", () => {
+  document.querySelector("body").classList = [
+    theme.checked ? "theme-light" : "theme-dark",
+  ];
+});
+
 disableBtn();
 
 $form.addEventListener("submit", (e) => {
