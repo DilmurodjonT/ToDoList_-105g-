@@ -197,7 +197,7 @@
 .task-container {
   overflow-y: auto;
   width: 100%;
-  height: 350px;
+  height: 290px;
 }
 
 .adder-section__form {
@@ -249,4 +249,45 @@
   border: 1px solid gray !important;
   outline: none;
   padding: 10px 12px !important;
+}
+
+@media (max-width: 450px) {
+  .todolist-container {
+    width: 230px;
+  }
+
+  .flex-row h1 {
+    font-size: 2rem;
+  }
+
+  .task-item__btn-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px 10px;
+  }
+  .delete-notification {
+    width: 200px;
+    font-size: 12px;
+  }
+
+  .main {
+    place-items: inherit;
+    align-items: center;
+    justify-content: center;
+  }
+  .adder-section__form button {
+    padding-inline: initial;
+    padding: 0 5px;
+    font-size: 12px;
+  }
+
+  .adder-section__form {
+    gap: 0 10px;
+  }
+  .form__input-wrapper input {
+    font-size: 10px;
+  }
+
+  .form__input-wrapper i {
+    padding-left: 10px;
+  }
 }
