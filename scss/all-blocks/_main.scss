@@ -27,7 +27,7 @@
 
 .theme-block #theme + label::before {
   content: "";
-  background: url(../../imags/icon-sun.svg);
+  background: url(./../imags/icon-sun.svg);
   display: block;
   width: 26px;
   height: 26px;
@@ -35,7 +35,7 @@
 }
 
 .theme-block #theme:checked + label::before {
-  background: url(../../imags/icon-moon.svg);
+  background: url(./../imags/icon-moon.svg);
 }
 
 .todolist-container {
